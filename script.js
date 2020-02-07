@@ -1,24 +1,16 @@
-function Calculator() {
-  this.numOne = 0;
-  this.numTwo = 0;
+function Accumulator(startingValue) {
+  this.value = startingValue;
 
   this.read = function() {
-    this.numOne = +prompt('Enter first number', '0');
-    this.numTwo = +prompt('Enter second number', '0');
-  };
-
-  this.sum = function() {
-    return this.numOne + this.numTwo;
-  };
-
-  this.mul = function() {
-    return this.numOne * this.numTwo;
+    let num = +prompt('Enter a number: ', '0');
+    return this.value += num;
   };
 }
 
-let calc = new Calculator();
+let acc = new Accumulator(1);
 
-calc.read();
 
-console.log(`sum =: ${calc.sum()}`);
-console.log(`mul =: ${calc.mul()}`);
+acc.read();
+acc.read();
+
+console.log(acc.value);
