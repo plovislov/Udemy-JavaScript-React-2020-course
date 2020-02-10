@@ -1,33 +1,45 @@
-// function readNumber() {
-//   let num = +prompt('Enter a number');
-//   if (isNaN(num)) {
-//     return readNumber();
-//   }
-//   if (num === null) {
-//     return null;
-//   }
-//   if (typeof num === 'number') {
-//     return num;
+// function ucFirst(str) {
+//   if (!str) return str;
+//
+//   return str[0].toUpperCase() + str.slice(1);
+// }
+//
+// console.log(ucFirst('hello world!'));
+
+// Write a function checkSpam(str) that returns true if str contains ‘viagra’ or ‘XXX’, otherwise false.
+
+// function checkSpam(str) {
+//   if (str.includes('viagra') || str.includes('XXX')) {
+//     return true;
+//   } else {
+//     return false;
 //   }
 // }
 //
-// console.log(readNumber());
+// console.log(checkSpam('sdfwefviagrabree'));
+// console.log(checkSpam('grgefviaXXXbrfefee'));
+// console.log(checkSpam('opsowefbsewrwee'));
 
-// Write the function random(min, max) to generate a random floating-point number from min to max (not including max).
+// truncate("What I'd like to tell on this topic is:", 20) = "What I'd like to te…"
+// truncate("Hi everyone!", 20) = "Hi everyone!"
 
-// function random(min, max) {
-//   let value = min + Math.random() * (max - min);
-//
-//   return value;
+// function truncate(str, maxLength) {
+//   if (str.length > maxLength) {
+//     str = str.slice(0, maxLength - 1) + '...';
+//     return str;
+//   } else {
+//     return str;
+//   }
 // }
+//
+// console.log(truncate('What I\'d like to tell on this topic is:', 20));
+// console.log(truncate('Hi everyone!', 20));
 
-// Create a function randomInteger(min, max) that generates a random integer number from min to max including both min and max as possible values.
+// Write function to extract currency value like: $120
 
-function random(min, max) {
-  return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+function extractCurrencyValue(str) {
+  return +str.slice(1);
 }
 
-console.log(random(1, 5));
-console.log(random(1, 5));
-console.log(random(1, 5));
-console.log(random(1, 5));
+console.log(extractCurrencyValue('$120'))
+console.log(typeof extractCurrencyValue('$120'))
