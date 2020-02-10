@@ -1,16 +1,33 @@
-function Accumulator(startingValue) {
-  this.value = startingValue;
+// function readNumber() {
+//   let num = +prompt('Enter a number');
+//   if (isNaN(num)) {
+//     return readNumber();
+//   }
+//   if (num === null) {
+//     return null;
+//   }
+//   if (typeof num === 'number') {
+//     return num;
+//   }
+// }
+//
+// console.log(readNumber());
 
-  this.read = function() {
-    let num = +prompt('Enter a number: ', '0');
-    return this.value += num;
-  };
+// Write the function random(min, max) to generate a random floating-point number from min to max (not including max).
+
+// function random(min, max) {
+//   let value = min + Math.random() * (max - min);
+//
+//   return value;
+// }
+
+// Create a function randomInteger(min, max) that generates a random integer number from min to max including both min and max as possible values.
+
+function random(min, max) {
+  return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 }
 
-let acc = new Accumulator(1);
-
-
-acc.read();
-acc.read();
-
-console.log(acc.value);
+console.log(random(1, 5));
+console.log(random(1, 5));
+console.log(random(1, 5));
+console.log(random(1, 5));
