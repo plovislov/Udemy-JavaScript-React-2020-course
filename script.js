@@ -1,45 +1,35 @@
-// function ucFirst(str) {
-//   if (!str) return str;
-//
-//   return str[0].toUpperCase() + str.slice(1);
-// }
-//
-// console.log(ucFirst('hello world!'));
+let styles = ['Jazz', 'Blues'];
 
-// Write a function checkSpam(str) that returns true if str contains ‘viagra’ or ‘XXX’, otherwise false.
+styles.push('Rock-n-Roll');
 
-// function checkSpam(str) {
-//   if (str.includes('viagra') || str.includes('XXX')) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-//
-// console.log(checkSpam('sdfwefviagrabree'));
-// console.log(checkSpam('grgefviaXXXbrfefee'));
-// console.log(checkSpam('opsowefbsewrwee'));
+styles.splice(1, 1, 'Classics');
 
-// truncate("What I'd like to tell on this topic is:", 20) = "What I'd like to te…"
-// truncate("Hi everyone!", 20) = "Hi everyone!"
+console.log(styles.shift());
 
-// function truncate(str, maxLength) {
-//   if (str.length > maxLength) {
-//     str = str.slice(0, maxLength - 1) + '...';
-//     return str;
-//   } else {
-//     return str;
-//   }
-// }
-//
-// console.log(truncate('What I\'d like to tell on this topic is:', 20));
-// console.log(truncate('Hi everyone!', 20));
+styles.unshift('Rap', 'Raggie');
 
-// Write function to extract currency value like: $120
+// --
 
-function extractCurrencyValue(str) {
-  return +str.slice(1);
+function sumInput() {
+  let numbers = [];
+
+  while (true) {
+    let val = prompt('Enter a number', 0);
+
+    if (val === '' || val === null || !isFinite(val)) break;
+
+    numbers.push(+val);
+  }
+
+  // summarize
+
+  let sum = 0;
+
+  for (let item of numbers) {
+    sum += item;
+  }
+
+  console.log(sum);
 }
 
-console.log(extractCurrencyValue('$120'))
-console.log(typeof extractCurrencyValue('$120'))
+sumInput();
