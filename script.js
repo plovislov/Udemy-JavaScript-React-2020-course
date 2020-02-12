@@ -1,35 +1,12 @@
-let styles = ['Jazz', 'Blues'];
+// Write the function camelize(str) that changes dash-separated words like “my-short-string” into camel-cased “myShortString”.
 
-styles.push('Rock-n-Roll');
+function camelize(str) {
+  return str.split('-').map(function(item, index) {
+    if (index === 0) {
+      return item;
+    } else {
+      return item[0].toUpperCase() + item.slice(1);
+    }
+  }).join('');
 
-styles.splice(1, 1, 'Classics');
-
-console.log(styles.shift());
-
-styles.unshift('Rap', 'Raggie');
-
-// --
-
-function sumInput() {
-  let numbers = [];
-
-  while (true) {
-    let val = prompt('Enter a number', 0);
-
-    if (val === '' || val === null || !isFinite(val)) break;
-
-    numbers.push(+val);
-  }
-
-  // summarize
-
-  let sum = 0;
-
-  for (let item of numbers) {
-    sum += item;
-  }
-
-  console.log(sum);
 }
-
-sumInput();
