@@ -1,29 +1,24 @@
-function Calculator() {
-  this.methods = {
-    '+': (a, b) => a + b,
-    '-': (a, b) => a - b,
+let john = {name: 'John', surname: 'Smith', id: 1};
+let pete = {name: 'Pete', surname: 'Hunt', id: 2};
+let mary = {name: 'Mary', surname: 'Key', id: 3};
+
+let users = [john, pete, mary];
+
+let usersMapped = users.map(function(item) {
+  return {
+    fullName: `${item.name} ${item.surname}`,
+    id: item.id,
   };
+});
 
-  this.calculate = function(str) {
-    let split = str.split(' '),
-        a = +split[0],
-        op = split[1],
-        b = +split[2];
+/*
+usersMapped = [
+  { fullName: "John Smith", id: 1 },
+  { fullName: "Pete Hunt", id: 2 },
+  { fullName: "Mary Key", id: 3 }
+]
+*/
+console.log(usersMapped);
 
-    if (!this.methods[op] || isNaN(a) || isNaN(b)) {
-      return NaN;
-    }
-
-    return this.methods[op](a, b);
-  };
-
-  this.addMethod = function(name, func) {
-    this.methods[name] = func;
-  };
-}
-
-let calc = new Calculator();
-
-console.log(calc.calculate('3 + 7'));
-console.log(calc.calculate('10 - 7'));
-calc.addMethod('/', (a, b) => a * b);
+console.log(usersMapped[0].id); // 1
+console.log(usersMapped[0].fullName); // John Smith
