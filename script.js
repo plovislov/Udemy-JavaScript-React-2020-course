@@ -1,10 +1,10 @@
-function unique(arr) {
-  let set = new Set(arr);
-  return Array.from(set);
+let user = {
+    name: 'John',
+    age: 30
+};
+
+console.log(count(user)); // 2
+
+function count(obj) {
+    return Object.entries(obj).length;
 }
-
-let values = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
-];
-
-console.log(unique(values));
