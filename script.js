@@ -1,10 +1,29 @@
-let user = {
-    name: 'John',
-    age: 30
+// let user = {
+//     name: 'John',
+//     years: 30,
+// };
+//
+// let {name, years: age, isAdmin = false} = user;
+//
+// console.log(name, age, isAdmin);
+
+let salaries = {
+    "John": 100,
+    "Pete": 300,
+    "Mary": 250
 };
 
-console.log(count(user)); // 2
+function topSalary(salaries) {
+    let max = 0;
+    let maxName = null;
 
-function count(obj) {
-    return Object.entries(obj).length;
+    for (const [name, salary] of Object.entries(salaries)) {
+        if (max < salary) {
+            max = salary;
+            maxName = name;
+        }
+    }
+    return maxName;
 }
+
+console.log(topSalary(salaries));
