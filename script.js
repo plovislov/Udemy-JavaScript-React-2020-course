@@ -1,29 +1,20 @@
-// let user = {
-//     name: 'John',
-//     years: 30,
-// };
-//
-// let {name, years: age, isAdmin = false} = user;
-//
-// console.log(name, age, isAdmin);
+let someDay = new Date('2012-02-20T03:20:00');
+console.log(someDay);
 
-let salaries = {
-    "John": 100,
-    "Pete": 300,
-    "Mary": 250
-};
-
-function topSalary(salaries) {
-    let max = 0;
-    let maxName = null;
-
-    for (const [name, salary] of Object.entries(salaries)) {
-        if (max < salary) {
-            max = salary;
-            maxName = name;
-        }
-    }
-    return maxName;
+function getWeekDay(date) {
+    let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+    return days[date.getDay()];
 }
 
-console.log(topSalary(salaries));
+let now = new Date();
+
+console.log(getWeekDay(now));
+
+function getSecondsTillTomorrow() {
+    let now = new Date();
+    let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    let diff = tomorrow - now;
+    console.log(Math.round(diff / 1000));
+}
+
+getSecondsTillTomorrow();
