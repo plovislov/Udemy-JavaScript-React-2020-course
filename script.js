@@ -1,27 +1,20 @@
-function sumTo(n) {
-    let result = 0;
+function inBetween(a, b) {
+    return function (x) {
+        return x >= a && x <= b;
 
-    for (let i = 0; i <= n; i++) {
-        result += i;
-    }
-    return result;
-}
-
-function sumTo(n) {
-    if (n === 1) {
-        return n;
-    } else {
-        return n + sumTo(n-1);
     }
 }
 
-function sumTo(n) {
-    return n * (1 + n) / 2;
+function inArray(arr) {
+    return function (x) {
+        return arr.includes(x);
+    }
 }
 
 
-console.log(sumTo(1)); // 1
-console.log(sumTo(2)); //3
-console.log(sumTo(3)); // 6
-console.log(sumTo(4)); // 10
-console.log(sumTo(100)); // 5050
+/* .. your code for inBetween and inArray */
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+console.log(arr.filter(inBetween(3, 6))); // 3,4,5,6
+
+console.log(arr.filter(inArray([1, 2, 10]))); // 1,2
