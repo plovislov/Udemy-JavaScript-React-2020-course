@@ -1,15 +1,18 @@
-let users = [
-    {name: "John", age: 20, surname: "Johnson"},
-    {name: "Pete", age: 18, surname: "Peterson"},
-    {name: "Ann", age: 19, surname: "Hathaway"}
-];
+function makeArmy() {
+    let shooters = [];
 
-function byField(field) {
-    return (a, b) => a[field] > b[field] ? 1 : -1;
+    for (let i = 0; i < 10; i++) {
+        let shooter = function () { // shooter function
+            console.log(i); // should show its number
+        };
+        shooters.push(shooter);
+    }
+
+    return shooters;
 }
 
-let byName = users.sort(byField('name'));
-console.log(byName);
+let army = makeArmy();
 
-let byAge = users.sort(byField('age'));
-console.log(byAge);
+army[0](); // the shooter number 0 shows 10
+army[5](); // and number 5 also outputs 10...
+// ... all shooters show 10 instead of their 0, 1, 2, 3...
