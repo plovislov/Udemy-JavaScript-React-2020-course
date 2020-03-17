@@ -1,18 +1,13 @@
-function makeArmy() {
-    let shooters = [];
+function makeCounter() {
+    let count = 0;
 
-    for (let i = 0; i < 10; i++) {
-        let shooter = function () { // shooter function
-            console.log(i); // should show its number
-        };
-        shooters.push(shooter);
+    function counter() {
+        return count++;
     }
 
-    return shooters;
+    counter.set = value => count = value;
+
+    counter.decrease = () => count--;
+
+    return counter;
 }
-
-let army = makeArmy();
-
-army[0](); // the shooter number 0 shows 10
-army[5](); // and number 5 also outputs 10...
-// ... all shooters show 10 instead of their 0, 1, 2, 3...
