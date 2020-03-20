@@ -1,22 +1,32 @@
-function makeCounter() {
+function printNumbers(from, to) {
+    let number = from;
 
-    function counter() {
-        return counter.count++;
-    }
+    let timerId = setInterval(() => {
+        if (number > to) {
+            clearInterval(timerId);
+        } else {
+            console.log(number);
+        }
 
-    counter.count = 0;
+        number++;
+    }, 1000);
 
-    counter.set = n => counter.count = n;
-
-    counter.decrease = () => counter.count--;
-
-    return counter;
 }
 
-let counter = makeCounter();
+printNumbers(5, 10);
 
-counter.set(11);
-counter();
-counter.decrease();
-console.log(counter()); // 10
+function printNumbers(from, to) {
+    let number = from;
+
+    setTimeout(function run() {
+        console.log(number);
+
+        if (number < to) {
+            setTimeout(run, 1000);
+            number++;
+        }
+    }, 1000)
+}
+
+printNumbers(5, 10);
 
