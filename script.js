@@ -1,32 +1,24 @@
-function printNumbers(from, to) {
-    let number = from;
-
-    let timerId = setInterval(() => {
-        if (number > to) {
-            clearInterval(timerId);
-        } else {
-            console.log(number);
-        }
-
-        number++;
-    }, 1000);
-
+function work(a, b) {
+    console.log(a + b); // произвольная функция или метод
 }
 
-printNumbers(5, 10);
+function spy(func) {
+    function wrapper(...args) {
+        wrapper.calls.push(args);
+        func.apply(this, arguments);
+    }
 
-function printNumbers(from, to) {
-    let number = from;
+    wrapper.calls = [];
 
-    setTimeout(function run() {
-        console.log(number);
-
-        if (number < to) {
-            setTimeout(run, 1000);
-            number++;
-        }
-    }, 1000)
+    return wrapper;
 }
 
-printNumbers(5, 10);
+work = spy(work);
 
+work(1, 2); // 3
+work(4, 5); // 9
+
+console.log(work.calls);
+for (let args of work.calls) {
+    console.log('call:' + args.join()); // "call:1,2", "call:4,5"
+}
