@@ -1,24 +1,15 @@
-function work(a, b) {
-    console.log(a + b); // произвольная функция или метод
+function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password === "rockstar") ok();
+    else fail();
 }
 
-function spy(func) {
-    function wrapper(...args) {
-        wrapper.calls.push(args);
-        func.apply(this, arguments);
+let user = {
+    name: 'John',
+
+    login(result) {
+        alert(this.name + (result ? ' logged in' : ' failed to log in'));
     }
+};
 
-    wrapper.calls = [];
-
-    return wrapper;
-}
-
-work = spy(work);
-
-work(1, 2); // 3
-work(4, 5); // 9
-
-console.log(work.calls);
-for (let args of work.calls) {
-    console.log('call:' + args.join()); // "call:1,2", "call:4,5"
-}
+askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
