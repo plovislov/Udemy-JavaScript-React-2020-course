@@ -1,23 +1,15 @@
-let dictionary = Object.create(null);
-
-// ваш код, который добавляет метод dictionary.toString
-Object.defineProperty(dictionary, 'toString', {
-    value() {
-        return Object.keys(this).join();
-    },
-    writable: true,
-    configurable: true,
-    enumerable: false,
-});
-
-// добавляем немного данных
-dictionary.apple = "Apple";
-dictionary.__proto__ = "test"; // здесь __proto__ -- это обычный ключ
-
-// только apple и __proto__ выведены в цикле
-for (let key in dictionary) {
-    console.log(key); // "apple", затем "__proto__"
+function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password === "rockstar") ok();
+    else fail();
 }
 
-// ваш метод toString в действии
-console.log(dictionary.toString()); // "apple,__proto__"
+let user = {
+    name: 'John',
+
+    login(result) {
+        alert(this.name + (result ? ' logged in' : ' failed to log in'));
+    }
+};
+
+askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
