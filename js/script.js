@@ -1,73 +1,67 @@
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   'use strict';
-  let numberOfFilms;
 
-  function start() {
-    numberOfFilms = +prompt('Сколько фильмов вы посмотрели?', '');
+  const adv = document.querySelector('.promo__adv'),
+      genre = document.querySelector('.promo__genre'),
+      background = document.querySelector('.promo__bg'),
+      films = document.querySelector('.promo__interactive-list'),
+      button = document.querySelector('button'),
+      input = document.querySelector('.adding__input');
 
-    while (numberOfFilms == '' ||
-    numberOfFilms == null ||
-    isNaN(numberOfFilms)) {
-      numberOfFilms = +prompt('Сколько фильмов вы посмотрели?', '');
-    }
-  }
+  const movieDB = {
+    movies: [
+      "Логан",
+      "Лига справедливости",
+      "Ла-ла лэнд",
+      "Одержимость",
+      "Скотт Пилигрим против..."
+    ],
+    renderFilms() {
+      this.movies = this.movies.map (item => item = this.cropName(item));
 
-  start();
-  const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
-  };
+      films.innerHTML = '';
+      const moviesSorted = movieDB.movies.sort();
 
-
-  function rememberMyFilms() {
-    for (let i = 0; i < 2; i++) {
-      const a = prompt('Один из просмотренных фильмов', ''),
-          b = prompt('На сколько оцените его?', '');
-
-      if (a !== null && b !== null && a !== '' && b !== '' && a.length < 50) {
-        personalMovieDB[a] = b;
-        console.log('done');
+      moviesSorted.forEach((item, i) => {
+        films.insertAdjacentHTML('beforeend',
+            `<li class="promo__interactive-item">${i + 1}: ${item}
+                            <div class="delete"></div>
+                        </li>`);
+      });
+      setEventListenersForDeleteButtons();
+    },
+    cropName(name) {
+      if (name.length > 21) {
+        return `${name.slice(0, 21)}...`;
       } else {
-        i--;
-        console.log('error');
+        return name;
       }
     }
+  };
+
+  adv.remove();
+  genre.textContent = 'Драма';
+  background.style.cssText =
+      'background-image: url("img/bg.jpg")';
+
+  function setEventListenersForDeleteButtons() {
+    let deleteButtons = document.querySelectorAll('.delete');
+    deleteButtons.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        item.parentElement.remove();
+        movieDB.movies.splice(i, 1);
+        movieDB.renderFilms();
+      });
+    });
   }
 
-  rememberMyFilms();
+  movieDB.renderFilms();
 
-  function detectPersonalLevel() {
-    if (personalMovieDB.count < 10) {
-      alert('Просмотрено довольно мало фильмов');
-    } else if (personalMovieDB.count >= 10 && personalMovieDB < 30) {
-      alert('Вы класссический зритель');
-    } else if (personalMovieDB.count >= 30) {
-      alert('Вы киноман');
-    } else {
-      console.log('error');
-    }
-  }
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    movieDB.movies.push(input.value);
+    movieDB.renderFilms();
+  });
 
-  detectPersonalLevel();
+});
 
-  function showMyDB(hidden) {
-    if (!hidden) {
-      console.log(personalMovieDB);
-    }
-  }
-
-  showMyDB(personalMovieDB.privat);
-
-  function writeYourGenres() {
-    for (let i = 1; i < 4; i++) {
-      personalMovieDB.genres
-          .push(prompt(`Ваш любимый жанр под номером ${i}`, ''));
-    }
-  }
-
-  writeYourGenres();
-
-})();
