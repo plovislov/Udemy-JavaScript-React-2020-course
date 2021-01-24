@@ -23,22 +23,22 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: [
-        {label: 'Going to learn React', important: true, id: 'qe12f'},
-        {label: 'That is so good', important: false, id: 'qe3rf'},
-        {label: 'I need a break...', important: false, id: 'qef'},
+        {label: 'Going to learn React', important: true, id: 1},
+        {label: 'That is so good', important: false, id: 2},
+        {label: 'I need a break...', important: false, id: 3},
       ]
     }
     this.deleteItem = this.deleteItem.bind(this);
     this.addItem = this.addItem.bind(this);
+
+    this.maxsId = 4;
   }
 
   deleteItem(id) {
     this.setState(({data}) => {
       const index = data.findIndex(elem => elem.id === id);
-      const before = data.slice(0, index);
-      const after = data.slice(index + 1);
 
-      const newArr = [...before, ...after];
+      const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
 
       return {
         data: newArr
@@ -49,6 +49,17 @@ export default class App extends Component {
 
   addItem(body) {
     console.log(body);
+    const newItem = {
+      label: body,
+      important: false,
+      id: this.maxId++
+    }
+    this.setState(({data}) => {
+      const newArr = [...data, newItem];
+      return {
+        data: newArr
+      }
+    })
   }
 
   render() {
@@ -64,7 +75,8 @@ export default class App extends Component {
               onDelete={this.deleteItem}
               posts={this.state.data}
           />
-          <PostAddForm/>
+          <PostAddForm
+              onAdd={this.addItem}/>
         </AppBlock>
     )
   }
