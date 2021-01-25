@@ -31,7 +31,7 @@ export default class App extends Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.addItem = this.addItem.bind(this);
 
-    this.maxsId = 4;
+    this.maxId = 4;
   }
 
   deleteItem(id) {
