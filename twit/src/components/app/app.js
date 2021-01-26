@@ -14,10 +14,6 @@ const AppBlock = styled.div`
     max-width: 800px;
 `;
 
-const StyledAppBlock = styled(AppBlock)`
-  background-color: grey;
-`;
-
 export default class App extends Component {
   constructor(props) {
     super(props);
